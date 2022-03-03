@@ -1,7 +1,7 @@
 {
-  "name": "earthmc-api",
+  "name": "ccnetmc-api",
   "version": "1.0.0",
-  "description": "A REST API providing info on the EarthMC Minecraft server",
+  "description": "A REST API providing info on the CCNetMC Minecraft server",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -11,7 +11,7 @@
   "dependencies": {
     "cors": "^2.8.5",
     "dotenv": "^16.0.0",
-    "earthmc": "^1.8.9",
+    "ccnetmc": "^1.0.0",
     "express": "^4.17.2",
     "memory-cache": "^0.2.0"
   }
