@@ -10,7 +10,7 @@
   "author": "Owen77Stubbs",
   "license": "ISC",
   "dependencies": {
-    "ccnetmc": "^1.0.0",
+    "ccnetmc": "^1.1.0",
     "cors": "^2.8.5",
     "dotenv": "^16.0.0",
     "express": "^4.17.2",
