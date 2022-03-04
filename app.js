@@ -13,8 +13,7 @@ const express = require("express")
       nearbyNationsRoute = require("./routes/api/v1/nearbyNations"),
       onlineRedirect = require("./routes/api/v1/redirects/online"),
       playersRedirect = require("./routes/api/v1/redirects/players"),
-      townlessRedirect = require("./routes/api/v1/redirects/townless"),
-      alliancesRoute = require("./routes/api/v1/alliances")
+      townlessRedirect = require("./routes/api/v1/redirects/townless")
 
 app.use(express.json())
 
@@ -39,8 +38,6 @@ app.use("/api/v1/online", onlineRedirect)
 app.use("/api/v1/players", playersRedirect)
 app.use("/api/v1/townless", townlessRedirect)
 
-// POST, PUT, DELETE restricted to EMC Stats.
-app.use("/api/v1/alliances", alliancesRoute)
 
 // Default not found response
 app.use((req, res) => 
