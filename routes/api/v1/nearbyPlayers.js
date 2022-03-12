@@ -1,6 +1,6 @@
 const express = require("express"),
       router = express.Router(),
-      emc = require("earthmc")
+      emc = require("ccnetmc")
 
 router.get("/:xPos/:zPos/:xBlocks/:zBlocks", async (req, res) => 
 {
