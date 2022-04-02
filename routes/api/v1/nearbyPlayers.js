@@ -2,24 +2,25 @@ const express = require("express"),
       router = express.Router(),
       emc = require("ccnetmc")
 
-router.get("/:xPos/:zPos/:xBlocks/:zBlocks", async (req, res) => 
+var timeout = 5000
+
+router.get("/:xPos/:zPos/:xBlocks/:zBlocks", async (req, res) =>
 {
-    var xBlocks = req.params.xBlocks
-    var zBlocks = req.params.zBlocks
+    var xBlocks = Number(req.params.xBlocks)
+    var zBlocks = Number(req.params.zBlocks)
     if (!xBlocks) xBlocks = 500
     if (!zBlocks) zBlocks = 500
 
     var nearbyPlayers = await emc.getNearbyPlayers(Number(req.params.xPos), Number(req.params.zPos), Number(xBlocks), Number(zBlocks))
                                  .then(players => { return players })
                                  .catch(() => {})
-    
+
     if (!nearbyPlayers) sendOk(res, [])
     else sendOk(res, nearbyPlayers)
 })
 
-function sendOk(res, data)
-{
-    res.status(200).json(data)
+function sendOk(res, data) {
+    res.status(200).json(data).setTimeout(timeout)
 }
 
 module.exports = router

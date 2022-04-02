@@ -1,6 +1,6 @@
+// @ts-nocheck
 const express = require("express")
       app = express(),
-      mainRoute = require("./routes/main"),
       townsRoute = require("./routes/api/v1/towns"),
       nationsRoute = require("./routes/api/v1/nations"),
       residentsRoute = require("./routes/api/v1/residents"),
@@ -15,12 +15,13 @@ const express = require("express")
       playersRedirect = require("./routes/api/v1/redirects/players"),
       townlessRedirect = require("./routes/api/v1/redirects/townless")
 
-app.use(express.json())
+var bodyParser = require("body-parser")
+app.use(bodyParser.json({ limit: '40mb' }))
+app.use(bodyParser.urlencoded({ limit: "40mb", extended: true, parameterLimit: 50000 }))
 
-// Use index and auth routes.
-app.use("/", mainRoute)
+// Serve webpage routes.
 
-// Use the routes defined in api/routes
+// Serve API routes.
 app.use("/api/v1/towns", townsRoute)
 app.use("/api/v1/nations", nationsRoute)
 app.use("/api/v1/residents", residentsRoute)
@@ -38,9 +39,11 @@ app.use("/api/v1/online", onlineRedirect)
 app.use("/api/v1/players", playersRedirect)
 app.use("/api/v1/townless", townlessRedirect)
 
+// POST, PUT, DELETE restricted to EMC Stats.
+app.use("/api/v1/allplayers", allPlayersRoute)
 
 // Default not found response
-app.use((req, res) => 
+app.use((req, res) =>
 {
       var date = new Date()
 
@@ -54,7 +57,7 @@ app.use((req, res) =>
 })
 
 // Error handling
-app.use((error, req, res) => 
+app.use((error, req, res) =>
 {
       var date = new Date()
 
