@@ -1,6 +1,7 @@
 // @ts-nocheck
 const express = require("express")
       app = express(),
+      rateLimit = require('express-rate-limit'),
       townsRoute = require("./routes/api/v1/towns"),
       nationsRoute = require("./routes/api/v1/nations"),
       residentsRoute = require("./routes/api/v1/residents"),
@@ -15,11 +16,22 @@ const express = require("express")
       playersRedirect = require("./routes/api/v1/redirects/players"),
       townlessRedirect = require("./routes/api/v1/redirects/townless")
 
+const limiter = rateLimit({
+      windowMs: 1 * 60 * 1000, // Every min
+      max: 120, // Limit each IP to 120 requests per `window`
+      standardHeaders: true, // Return rate limit info in the `RateLimit-*` headers
+      legacyHeaders: false, // Disable the `X-RateLimit-*` headers
+})
+      
+app.set('trust proxy', 1);
+app.use(limiter)
+
+const compression = require('compression')
+app.use(compression()) // Compress all routes
+
 var bodyParser = require("body-parser")
 app.use(bodyParser.json({ limit: '40mb' }))
 app.use(bodyParser.urlencoded({ limit: "40mb", extended: true, parameterLimit: 50000 }))
-
-// Serve webpage routes.
 
 // Serve API routes.
 app.use("/api/v1/towns", townsRoute)

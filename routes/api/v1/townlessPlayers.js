@@ -3,19 +3,19 @@ const express = require("express"),
       emc = require("ccnetmc"),
       cache = require("memory-cache")
 
-var cacheTimeout = 30000
+      var cacheTimeout = 3000
 
-router.get("/", async (req, res) => 
-{
-    var cachedTownless = cache.get('townless')
-    if (cachedTownless) {
-        res.status(200).json(cachedTownless)
-    } else {
-        var townlessPlayers = await emc.getTownless().then(townless => { return townless })
-
-        res.status(200).json(townlessPlayers)
-        cache.put('townless', townlessPlayers, cacheTimeout)
-    }
-})
-
-module.exports = router
+      router.get("/", async (req, res) => 
+      {
+          var cachedTownless = cache.get('townless')
+          if (cachedTownless) res.status(200).json(cachedTownless)
+          else {
+              var townlessPlayers = await emc.getTownless().then(townless => { return townless }).catch(() => {})
+      
+              if (!townlessPlayers) return
+              res.status(200).json(townlessPlayers)
+              cache.put('townless', townlessPlayers, cacheTimeout)
+          }
+      })
+      
+      module.exports = router
