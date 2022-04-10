@@ -17,7 +17,7 @@ const express = require("express")
       townlessRedirect = require("./routes/api/v1/redirects/townless")
 
 const limiter = rateLimit({
-      windowMs: 1 * 60 * 1000, // Every min
+      windowMs: 30000, // Every min
       max: 120, // Limit each IP to 120 requests per `window`
       standardHeaders: true, // Return rate limit info in the `RateLimit-*` headers
       legacyHeaders: false, // Disable the `X-RateLimit-*` headers

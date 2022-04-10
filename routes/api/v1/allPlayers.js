@@ -16,7 +16,7 @@ const express = require("express"),
       
               if (!allPlayers) return
               cache.put('players', mergeById(allPlayers, players))
-              res.status(200).json(mergeById(allPlayers, players)).setTimeout(timeout)
+              res.status(200).json(mergeById(allPlayers, players))
           }
           else res.status(401).send("PUT request unauthorized!")
       })
@@ -28,7 +28,7 @@ const express = require("express"),
           else {
               var allPlayers = await emc.getAllPlayers().then(players => { return players })
       
-              res.status(200).json(allPlayers)
+              res.status(200).json(allPlayers).setTimeout(timeout)
               cache.put('players', allPlayers)
           }
       })
@@ -42,7 +42,7 @@ const express = require("express"),
               var player = cachedPlayers.find(p => p.name.toLowerCase() == playerName)
       
               if (!player) res.status(404).json("That player does not exist!")
-              else res.status(200).json(player)
+              else res.status(200).json(player).setTimeout(timeout)
           } else {
               res.status(202).json("Players have not been cached yet.")
           }
