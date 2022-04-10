@@ -1,5 +1,5 @@
 # CCNetMC API 
-A REST API providing info about people, places and more on CCNetMC. This is a "fork" of the EarthMC API, although not actually a fork, I still update from upstream when possible (I barely know any JavaScipt, and what I do know was learnt from this project). The original API was created by [Owen3H](https://github.com/Owen3H) and [Warriorrrr](https://github.com/Warriorrrr).
+A REST API providing info about people, places and more on CCNetMC. This is a "fork" of the EarthMC API, and 99% of the code is **not** written by me. Although not actually a fork, I still update from upstream when possible (I barely know any JavaScipt, and what I do know was learnt from this project). The original API was created by [Owen3H](https://github.com/Owen3H) and [Warriorrrr](https://github.com/Warriorrrr).
 
 The original source code can be found here: [https://github.com/Owen3H/EarthMC-API](https://github.com/Owen3H/EarthMC-API)
 
