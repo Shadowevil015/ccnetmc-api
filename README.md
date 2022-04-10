@@ -26,7 +26,7 @@ console.log(town)
   <dd>• https://ccnet-api.herokuapp.com/api/v1</dd>
   
   <dl>Append a route from the list below</dl>
-  <dd>Full URL Example: http://earthmcstats.ddns.net/api/v1/towns</dd>
+  <dd>Full URL Example: https://ccnet-api.herokuapp.com/api/v1/towns</dd>
 </dl>
 
 ## Routes
