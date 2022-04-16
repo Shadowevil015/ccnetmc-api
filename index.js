@@ -3,9 +3,9 @@ const http = require("http")
 const https = require("https"),
       app = require("./app")
 
-const privatekey = fs.readFileSync('/etc/letsencrypt/live/shadowevil015.tech/privkey.pem', 'utf8')
-const certificate = fs.readFileSync('/etc/letsencrypt/live/shadowevil015.tech/cert.pem', 'utf8')
-const ca = fs.readFileSync('/etc/letsencrypt/live/shadowevil015.tech/chain.pem', 'utf8')
+const privatekey = fs.readFileSync('/home/ubuntu/shadowevil015.tech/privkey.pem', 'utf8')
+const certificate = fs.readFileSync('/home/ubuntu/shadowevil015.tech/cert.pem', 'utf8')
+const ca = fs.readFileSync('/home/ubuntu/shadowevil015.tech/chain.pem', 'utf8')
 
 const credentials = {
     key: privatekey,
