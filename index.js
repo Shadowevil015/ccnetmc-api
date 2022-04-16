@@ -14,7 +14,7 @@ const credentials = {
 };
 
 const httpsServer = https.createServer(credentials, app)
-httpsServer.listen(process.env.PORT || 80) 
+httpsServer.listen(process.env.PORT || 443) 
 
 const httpServer = http.createServer(app)
 httpServer.listen(process.env.PORT || 80)
