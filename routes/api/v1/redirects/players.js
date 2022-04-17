@@ -1,14 +1,12 @@
 const express = require("express"),
-      router = express.Router()
+  router = express.Router();
 
-router.get("/", async (req, res) => 
-{
-    res.redirect('allPlayers')
-})
+router.get("/", async (req, res) => {
+  res.redirect("allPlayers");
+});
 
-router.get("/:playerName", async (req, res) => 
-{
-    res.redirect('../allPlayers/' + req.params.playerName)
-})
+router.get("/:playerName", async (req, res) => {
+  res.redirect("../allPlayers/" + req.params.playerName);
+});
 
-module.exports = router
+module.exports = router;
