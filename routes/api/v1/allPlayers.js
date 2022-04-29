@@ -26,16 +26,14 @@ router.put("/", cors(), async function (req, res) {
 });
 
 router.get("/", async (req, res) => {
-  var cachedPlayers = cache.get("players");
-  if (cachedPlayers) res.status(200).json(cachedPlayers);
-  else {
+
     var allPlayers = await emc.getAllPlayers().then((players) => {
       return players;
     });
 
     res.status(200).json(allPlayers).setTimeout(timeout);
     cache.put("players", allPlayers);
-  }
+  
 });
 
 router.get("/:playerName", async (req, res) => {
