@@ -1,9 +1,15 @@
 const express = require("express"),
   router = express.Router(),
   emc = require("ccnetmc")
+  cache = require("memory-cache");
+
+var cacheTimeout = 20000;
 
 router.get("/", async (req, res) => {
+  var cachedSieges = cache.get("sieges");
 
+  if (cachedSieges) res.status(200).json(cachedSieges);
+  else {
     var sieges = await emc
       .getSieges()
       .then((sieges) => {
@@ -12,7 +18,8 @@ router.get("/", async (req, res) => {
       .catch(() => {});
 
     res.status(200).json(sieges);
-  
+    cache.put("sieges", sieges, cacheTimeout);
+  }
 });
 
 module.exports = router;
