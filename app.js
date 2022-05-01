@@ -6,6 +6,7 @@ const express = require("express");
   (nationsRoute = require("./routes/api/v1/nations")),
   (residentsRoute = require("./routes/api/v1/residents")),
   (siegesRoute = require("./routes/api/v1/sieges")),
+  (shopsRoute = require("./routes/api/v1/shops")),
   (serverInfoRoute = require("./routes/api/v1/serverInfo")),
   (onlinePlayersRoute = require("./routes/api/v1/onlinePlayers")),
   (townlessPlayersRoute = require("./routes/api/v1/townlessPlayers")),
@@ -45,6 +46,7 @@ app.use("/api/v1/towns", townsRoute);
 app.use("/api/v1/nations", nationsRoute);
 app.use("/api/v1/residents", residentsRoute);
 app.use("/api/v1/sieges", siegesRoute);
+app.use("/api/v1/shops", shopsRoute);
 app.use("/api/v1/serverinfo", serverInfoRoute);
 app.use("/api/v1/onlineplayers", onlinePlayersRoute);
 app.use("/api/v1/townlessplayers", townlessPlayersRoute);
