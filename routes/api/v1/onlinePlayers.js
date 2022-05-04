@@ -1,9 +1,9 @@
 const express = require("express"),
   router = express.Router(),
-  emc = require("ccnetmc");
+  ccmc = require("ccnetmc");
 
 router.get("/", async (req, res) => {
-  var onlinePlayers = await emc
+  var onlinePlayers = await ccmc
     .getOnlinePlayers(true)
     .then((players) => {
       return players;
@@ -14,7 +14,7 @@ router.get("/", async (req, res) => {
 });
 
 router.get("/:onlinePlayer", async (req, res) => {
-  var onlinePlayer = await emc
+  var onlinePlayer = await ccmc
     .getOnlinePlayer(req.params.onlinePlayer)
     .then((player) => {
       return player;

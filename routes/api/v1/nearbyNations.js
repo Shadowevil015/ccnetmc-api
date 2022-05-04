@@ -1,6 +1,6 @@
 const express = require("express"),
   router = express.Router(),
-  emc = require("ccnetmc");
+  ccmc = require("ccnetmc");
 
 var timeout = 30000;
 
@@ -10,7 +10,7 @@ router.get("/:xPos/:zPos/:xBlocks/:zBlocks", async (req, res) => {
   if (!xBlocks) xBlocks = 500;
   if (!zBlocks) zBlocks = 500;
 
-  var nearbyNations = await emc
+  var nearbyNations = await ccmc
     .getNearbyNations(
       Number(req.params.xPos),
       Number(req.params.zPos),

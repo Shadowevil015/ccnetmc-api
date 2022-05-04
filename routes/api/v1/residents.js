@@ -1,6 +1,6 @@
 const express = require("express"),
   router = express.Router(),
-  emc = require("ccnetmc"),
+  ccmc = require("ccnetmc"),
   cache = require("memory-cache");
 
 var cacheTimeout = 30000;
@@ -10,7 +10,7 @@ router.get("/", async (req, res) => {
 
   if (cachedResidents) res.status(200).json(cachedResidents);
   else {
-    var residents = await emc
+    var residents = await ccmc
       .getResidents()
       .then((residents) => {
         return residents;
@@ -35,7 +35,7 @@ router.get("/:residentName", async (req, res) => {
     if (cachedResident) res.status(200).json(cachedResident);
     else res.status(404).json("That resident does not exist!");
   } else {
-    var resident = await emc
+    var resident = await ccmc
       .getResident(residentName)
       .then((resident) => {
         return resident;

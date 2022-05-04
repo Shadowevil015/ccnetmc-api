@@ -1,6 +1,6 @@
 const express = require("express"),
   router = express.Router(),
-  emc = require("ccnetmc")
+  ccmc = require("ccnetmc")
   cache = require("memory-cache");
 
 var cacheTimeout = 20000;
@@ -10,7 +10,7 @@ router.get("/", async (req, res) => {
 
   if (cachedShops) res.status(200).json(cachedShops);
   else {
-    var shops = await emc
+    var shops = await ccmc
       .getShops()
       .then((shops) => {
         return shops;

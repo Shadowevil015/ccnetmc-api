@@ -1,6 +1,6 @@
 const express = require("express"),
   router = express.Router(),
-  emc = require("ccnetmc"),
+  ccmc = require("ccnetmc"),
   cache = require("memory-cache");
 
 var cacheTimeout = 30000;
@@ -10,7 +10,7 @@ router.get("/", async (req, res) => {
 
   if (cachedTowns) res.status(200).json(cachedTowns);
   else {
-    var towns = await emc
+    var towns = await ccmc
       .getTowns()
       .then((towns) => {
         return towns;
@@ -34,7 +34,7 @@ router.get("/:townName", async (req, res) => {
     if (cachedTown) res.status(200).json(cachedTown);
     else res.status(404).json("That town does not exist!");
   } else {
-    var foundTown = await emc
+    var foundTown = await ccmc
       .getTown(townName)
       .then((towns) => {
         return towns;
@@ -49,7 +49,7 @@ router.get("/:townName", async (req, res) => {
 
 router.get("/:townName/joinable", async (req, res) => {
   var townName = req.params.townName,
-    invitableNationsRes = await emc
+    invitableNationsRes = await ccmc
       .getJoinableNations(townName)
       .then((nations) => {
         return nations;

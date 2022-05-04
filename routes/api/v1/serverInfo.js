@@ -1,9 +1,9 @@
 const express = require("express"),
   router = express.Router(),
-  emc = require("ccnetmc");
+  ccmc = require("ccnetmc");
 
 router.get("/", async (req, res) => {
-  var serverInfo = await emc
+  var serverInfo = await ccmc
     .getServerInfo()
     .then((info) => {
       return info;
