@@ -63,9 +63,6 @@ app.use("/api/v1/online", onlineRedirect);
 app.use("/api/v1/players", playersRedirect);
 app.use("/api/v1/townless", townlessRedirect);
 
-// POST, PUT, DELETE restricted to EMC Stats.
-app.use("/api/v1/allplayers", allPlayersRoute);
-
 // Default not found response
 app.use((req, res) => {
   var date = new Date();
